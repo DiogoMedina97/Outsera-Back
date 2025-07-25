@@ -1,3 +1,4 @@
+
 # Movies API
 
 Projeto desenvolvido com [NestJS](https://nestjs.com/) para gerenciar e consultar informações de filmes.
@@ -6,6 +7,11 @@ Projeto desenvolvido com [NestJS](https://nestjs.com/) para gerenciar e consulta
 
 - [Node.js](https://nodejs.org/) (versão 18 ou superior)
 - [npm](https://www.npmjs.com/) (geralmente já vem com o Node)
+
+## Banco de Dados
+
+O projeto utiliza **SQLite3** como banco de dados.  
+Ao iniciar a aplicação, o arquivo do banco será criado automaticamente no diretório configurado pelo TypeORM.
 
 ## Instalação
 
@@ -34,6 +40,10 @@ src/seeds
 ```
 
 Eles são carregados automaticamente quando a aplicação sobe.
+
+## Endpoints principais
+
+- `GET /api/movies/maxMinWinIntervalForProducers` → Retorna os produtores com maior e menor intervalo entre vitórias.
 
 ## Testes
 
