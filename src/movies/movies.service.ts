@@ -14,6 +14,7 @@ export class MoviesService {
   public async getMaxMinWinIntervalForProducers() {
     const winners = await this.movieRepository.find({ where: { winner: true } });
 
+    // Mapeia os produtores e os anos em que venceu
     const producersMap: Record<string, number[]> = {};
     winners.forEach((movie) => {
       const producers = movie.producers.split(/,|and/).map((p) => p.trim());
@@ -23,6 +24,7 @@ export class MoviesService {
       }
     });
 
+    // Mapeia os intervalos
     const intervals: MovieInterval[] = [];
     for (const producer in producersMap) {
       const years = producersMap[producer].sort((a, b) => a - b);
@@ -40,12 +42,14 @@ export class MoviesService {
 
     if (intervals.length === 0) return { min: [], max: [] };
 
-    const intervalsSorted = intervals
-      .sort((a, b) => a.interval - b.interval);
+    // Recupera os intervalos mínimo e máximo
+    const intervalNumbers = intervals.map((v) => v.interval);
+    const minInterval = Math.min(...intervalNumbers);
+    const maxInterval = Math.max(...intervalNumbers);
 
     return {
-      min: intervalsSorted.slice(0, 2),
-      max: intervalsSorted.slice(-2),
+      min: intervals.filter((v) => v.interval === minInterval),
+      max: intervals.filter((v) => v.interval === maxInterval),
     };
   }
 }
