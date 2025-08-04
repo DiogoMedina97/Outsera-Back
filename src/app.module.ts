@@ -1,11 +1,16 @@
 import { Module } from '@nestjs/common';
-import { MoviesModule } from './movies/movies.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmConfig } from './typeorm.config';
+
+import { MoviesModule } from './movies/movies.module';
+import { AppDataSource } from './data-source';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(typeOrmConfig),
+    TypeOrmModule.forRootAsync({
+      useFactory: async () => ({
+        ...AppDataSource.options,
+      }),
+    }),
     MoviesModule,
   ],
 })
