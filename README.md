@@ -43,7 +43,7 @@ Eles são carregados automaticamente quando a aplicação sobe.
 
 ## Endpoints principais
 
-- `GET /api/movies/maxMinWinIntervalForProducers` → Retorna os produtores com maior e menor intervalo entre vitórias.
+- `GET http://localhost:3000/api/movies/maxMinWinIntervalForProducers` → Retorna os produtores com maior e menor intervalo entre vitórias.
 
 ## Testes
 
